@@ -62,6 +62,12 @@ function selectPaper(id) {
             $(this).addClass("visible");
         }
     })
+    $(".timeline-dot").each(function() {
+        $(this).removeClass("selected");
+        if ($(this).attr("data-id") == id) {
+            $(this).addClass("selected");
+        }
+    });
 }
 
 function getSelectedPaperId() {

@@ -32,7 +32,7 @@ h2 {
 }
 
 .timeline {
-    overflow-x: visible;
+    background-color: #fafafa;
 }
 
 .timeline-dot {
@@ -45,6 +45,7 @@ h2 {
     left: 45px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: -5px;
 }
 
 .timeline-dot.selected {
@@ -52,20 +53,41 @@ h2 {
     height: 12px;
     border-radius: 6px;
     left: 44px;
+    z-index: 10;
 }
 
-.timeline-dot.selected:after {
+.timeline-dot.selected:before {
     width: 49px;
     content:"";
     position: absolute;
     bottom: 0;
     left: 6px;
     height: 8px;
-    top: 1px;
-    border-top: 1px solid #f1f1f1;
-    border-bottom: 1px solid #f1f1f1;
-    overflow-x: visible;
-    z-index: -1;
+    top: 2px;
+    background-color: rgba(74, 149, 134, 0.5);
+    z-index: 0;
+}
+
+.year-line {
+    height: 1px;
+    background-color: #f5f5f5;
+    width: 100px;
+    position: absolute;
+    text-align: left;
+    font-size: 60%;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    padding-left: 2px;
+    color: #b2b2b2;
+}
+
+.year-label {
+    position: absolute;
+    font-size: 10px;
+    padding-left: 4px;
+    margin-top: -8px;
+    color: #bbb;
 }
 
 .notes {

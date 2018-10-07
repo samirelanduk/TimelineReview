@@ -93,9 +93,26 @@ $.ajax({
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
         var end = new Date(new Date().getYear() + 1900, 11, 31);
         var totalDays = (end - start) / (1000 * 60 * 60 * 24)
-        $(".timeline").css("height", (totalDays * PX_PER_DAY) + "px")
+        $(".timeline").css("height", (totalDays * PX_PER_DAY) + "px");
 
+        // Add timeline labels
         var timeline = $(".timeline");
+        var year = start;
+
+        while (year < end) {
+            yearMid = new Date(year.getYear() + 1900, 7, 1);
+            days = (year - start) / (1000 * 60 * 60 * 24)
+            timeline.append("<div class='year-line' style='top:"
+             + (days * PX_PER_DAY)
+              + "px;'></div>");
+            days = (yearMid - start) / (1000 * 60 * 60 * 24)
+            timeline.append("<div class='year-label' style='top:"
+             + (days * PX_PER_DAY)
+             + "px;'>" + (1900 + year.getYear()) + "</div>");
+            year = new Date(year.getYear() + 1901, 0, 1);
+        }
+
+
         var notes = $(".notes");
         for (var p = 0; p < papers.length; p++) {
             var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
@@ -107,6 +124,8 @@ $.ajax({
                 year: 'numeric', month: 'long', day: 'numeric'
             }) + "</div><div>" + papers[p].title + papers[p].summary + papers[p].text + "</div></div>")
         }
+
+
 
         $(".timeline-dot").each(function() {
             var id = $(this).attr("data-id");

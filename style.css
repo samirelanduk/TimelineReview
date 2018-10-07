@@ -1,0 +1,73 @@
+html {
+    height: 100%;
+    font-family: Montserrat;
+}
+
+body {
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    height: 100%;
+}
+
+h2 {
+    margin: 0px;
+    font-family: 'Roboto Slab';
+    text-align: center;
+}
+
+.timeline-container {
+    width: 100px;
+    border-right: 1px solid #f4f4f4;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-y: auto;
+    position: relative;
+    background: linear-gradient(90deg,
+        rgba(0,0,0,0) calc(50% - 1px),
+        rgba(192,192,192,1) calc(50%),
+        rgba(0,0,0,0) calc(50% + 1px)
+    )
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(74, 149, 134);
+    display: inline-block;
+    left: 45px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.notes {
+    overflow-y: auto;
+}
+
+.notes .date {
+    text-align: center;
+    background-color: rgba(74, 149, 134, 0.3);
+    font-weight: bold;
+}
+
+.notes .summary {
+    font-size: 110%;
+    text-align: center;
+}
+
+.notes p {
+    font-size: 90%;
+}
+
+.paper {
+    display: none;
+}
+
+.paper.visible {
+    display: block;
+}
+
+.paper div {
+    padding: 10px;
+}

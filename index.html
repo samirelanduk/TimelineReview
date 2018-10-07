@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Sam Ireland">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Literature Review Timeline</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="markdown.min.js"></script>
+</head>
+
+<body>
+
+    <div class="timeline-container">
+        <div class="timeline">
+        </div>
+    </div>
+
+
+    <div class="notes">
+    </div>
+
+<script>
+
+function textToBlocks(text) {
+    lines = text.split("\n"); blocks = []; var block = []
+    for (var l = 0; l < lines.length; l++) {
+        if (lines[l].slice(0, 2) == "##" && block.length) {
+            blocks.push(block); block = [];
+        }
+        if (lines[l]) {
+            block.push(lines[l])
+        }
+    }
+    blocks.push(block);
+    return blocks;
+}
+
+function blocksToPapers(blocks) {
+    var papers = [];
+    for (var b = 0; b < blocks.length; b++) {
+        var date = new Date(blocks[b][0].slice(4, 14));
+        var title = blocks[b][0].slice(0, 3) + blocks[b][0].slice(15);
+        var summary = blocks[b][1];
+        var text = blocks[b].slice(2);
+        papers.push({
+            date: date,
+            title: markdown.toHTML(title),
+            summary: "<p class='summary'>" + summary + "</p>",
+            text: markdown.toHTML(text.join("\n\n")),
+        })
+    }
+    return papers;
+}
+
+function selectPaper(id) {
+    $(".paper").each(function() {
+        $(this).removeClass("visible");
+        if ($(this).attr("data-id") == id) {
+            $(this).addClass("visible");
+        }
+    })
+}
+
+function getSelectedPaperId() {
+    var id = "-1";
+    $(".paper").each(function() {
+        if ($(this).hasClass("visible")) {
+            id = $(this).attr("data-id");
+        }
+    });
+    return id;
+}
+
+var blocks; var papers;
+var PX_PER_DAY = 0.1;
+$.ajax({
+    url: "notes.md",
+    cache: false,
+    contentType: "*/*",
+    success: function(text){
+        blocks = textToBlocks(text);
+        papers = blocksToPapers(blocks);
+
+        var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
+        var end = new Date(new Date().getYear() + 1900, 11, 31);
+        var totalDays = (end - start) / (1000 * 60 * 60 * 24)
+        $(".timeline").css("height", (totalDays * PX_PER_DAY) + "px")
+
+        var timeline = $(".timeline");
+        var notes = $(".notes");
+        for (var p = 0; p < papers.length; p++) {
+            var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
+            timeline.append("<div class='timeline-dot' style='top:"
+             + (days * PX_PER_DAY)
+              + "px' data-hover='" + papers[p].title + "' data-id='" + p + "'></div>");
+            notes.append("<div class='paper' data-id='" + p + "'>" +
+            "<div class='date'>" + papers[p].date.toLocaleDateString("GB", {
+                year: 'numeric', month: 'long', day: 'numeric'
+            }) + "</div><div>" + papers[p].title + papers[p].summary + papers[p].text + "</div></div>")
+        }
+
+        $(".timeline-dot").each(function() {
+            var id = $(this).attr("data-id");
+            $(this).click(function() {
+                selectPaper(id);
+            })
+        })
+
+        $(document).on('keydown', function(e) {
+            if (e.which == 40) {
+                e.preventDefault();
+                e.stopPropagation();
+                id = parseInt(getSelectedPaperId()) + 1;
+                if (id < $(".paper").length) {
+                    selectPaper(id);
+                }
+            }
+            if (e.which == 38) {
+                e.preventDefault();
+                e.stopPropagation();
+                id = parseInt(getSelectedPaperId()) - 1;
+                if (id >= 0) {
+                    selectPaper(id);
+                }
+            }
+        });
+    }
+
+
+});
+
+
+</script>
+
+</body>
+</html>

@@ -3,12 +3,13 @@ function isTouchDevice() {
     return "ontouchstart" in window || navigator.msMaxTouchPoints;
 }
 
-function selectPaper(id) {
+function selectPaper(id, papers) {
     // Selects a paper by its ID, scrolls to it, makes it appear, etc.
     $(".paper").each(function() {
         $(this).removeClass("visible");
         if ($(this).attr("data-id") == id) {
             $(this).addClass("visible");
+            window.location.replace("#" + papers[parseInt(id)].datestring)
         }
     })
     $(".timeline-dot").each(function() {
@@ -21,6 +22,7 @@ function selectPaper(id) {
             }, 500)
         }
     });
+
 }
 
 function getSelectedPaperId() {
@@ -91,7 +93,7 @@ $.ajax({
         $(".timeline-dot").each(function() {
             var id = $(this).attr("data-id");
             $(this).click(function() {
-                selectPaper(id);
+                selectPaper(id, papers);
             })
             if (!isTouchDevice()) {
                 $(this).on("mouseenter", function(e) {
@@ -107,15 +109,25 @@ $.ajax({
             }
         })
 
+        if (window.location.hash) {
+            term = window.location.hash.slice(1);
+            for (var p = 0; p < papers.length; p++) {
+                if (term == papers[p].datestring) {
+                    selectPaper(p, papers);
+                }
+            }
+        }
+
         // If the links are internal, make them select a paper when clicked.
         $("a").each(function() {
+
             if ($(this).attr("href")[0] == "#") {
                 $(this).on("click", function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     for (var p = 0; p < papers.length; p++) {
                         if ($(this).attr("href").slice(1) == papers[p].datestring) {
-                            selectPaper(p);
+                            selectPaper(p, papers);
                         }
                     }
                 });
@@ -129,7 +141,7 @@ $.ajax({
                 e.stopPropagation();
                 id = parseInt(getSelectedPaperId()) + 1;
                 if (id < $(".paper").length) {
-                    selectPaper(id);
+                    selectPaper(id, papers);
                 }
             }
             if (e.which == 38) {
@@ -137,7 +149,7 @@ $.ajax({
                 e.stopPropagation();
                 id = parseInt(getSelectedPaperId()) - 1;
                 if (id >= 0) {
-                    selectPaper(id);
+                    selectPaper(id, papers);
                 }
             }
         });

@@ -29,7 +29,7 @@ for line in lines:
         papers[-1].append(line)
 
 papers = [{
- "date": paper[0][4:14],
+ "datestring": paper[0][4:14],
  "title": docupy.markdown_to_html(paper[0][:3] + paper[0][15:]),
  "summary": docupy.markdown_to_html(paper[1]).replace("<p", "<p class='summary'"),
  "notes": docupy.markdown_to_html("\n\n".join(paper[2:])),

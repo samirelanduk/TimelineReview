@@ -34,8 +34,7 @@ function selectPaper(id) {
         $(this).removeClass("selected");
         if ($(this).attr("data-id") == id) {
             $(this).addClass("selected");
-            offset = $(this).css("top").slice(0, $(this).css("top").length - 2) - 20
-            console.log(offset)
+            offset = $(this).css("top").slice(0, $(this).css("top").length - 2) - 20;
             $(".timeline-container").animate({
                 scrollTop: offset
             }, 500)
@@ -53,15 +52,14 @@ function getSelectedPaperId() {
     return id;
 }
 
-var blocks; var papers;
-var PX_PER_DAY = 0.1;
+var PX_PER_DAY = 0.2;
 $.ajax({
     url: "papers.json",
     cache: false,
     contentType: "*/*",
     success: function(papers){
         for (var p = 0; p < papers.length; p++) {
-            papers[p].date = new Date(papers[p].date)
+            papers[p].date = new Date(papers[p].datestring)
         }
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
         var end = new Date(new Date().getYear() + 1900, 11, 31);
@@ -90,12 +88,15 @@ $.ajax({
         for (var p = 0; p < papers.length; p++) {
             var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
             timeline.append("<div class='timeline-dot' style='top:"
-             + (days * PX_PER_DAY)
-              + "px' data-hover='" + papers[p].title + "' data-id='" + p + "'></div>");
+            + (days * PX_PER_DAY)
+            + "px' data-hover='" + papers[p].title + "' data-id='" + p + "'></div>");
             notes.append("<div class='paper' data-id='" + p + "'>" +
             "<div class='date'>" + papers[p].date.toLocaleDateString("GB", {
                 year: 'numeric', month: 'short', day: 'numeric'
-            }) + "<div class='pdf " + papers[p].pdf + "'>PDF</div><div class='bib " + papers[p].bib + "'>BIB</div></div><div>" + papers[p].title + papers[p].summary + papers[p].notes + "</div></div>")
+            }) + "<div class='pdf " + papers[p].pdf
+            + "'>PDF</div><div class='bib " + papers[p].bib
+            + "'>BIB</div></div><div>" + papers[p].title + papers[p].summary
+            + papers[p].notes + "</div></div>")
         }
 
 
@@ -107,7 +108,21 @@ $.ajax({
             })
         })
 
-        $(document).on('keydown', function(e) {
+        $("a").each(function() {
+            if ($(this).attr("href")[0] == "#") {
+                $(this).on("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    for (var p = 0; p < papers.length; p++) {
+                        if ($(this).attr("href").slice(1) == papers[p].datestring) {
+                            selectPaper(p);
+                        }
+                    }
+                });
+            }
+        })
+
+        $(document).on("keydown", function(e) {
             if (e.which == 40) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -126,8 +141,6 @@ $.ajax({
             }
         });
     }
-
-
 });
 
 

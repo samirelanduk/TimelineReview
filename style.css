@@ -100,6 +100,33 @@ h2 {
     text-align: center;
     background-color: rgba(74, 149, 134, 0.3);
     font-weight: bold;
+    position: relative;
+}
+
+.date .pdf, .date .bib {
+    position: absolute;
+    top: 0px;
+}
+
+.date .pdf {
+    right: 10px;
+}
+
+.date .bib {
+    left: 10px;
+}
+
+.date .false {
+    color: red;
+    font-weight: bold;
+}
+
+.date .false:before {
+    content: "NO "
+}
+
+.date .true {
+    color: green;
 }
 
 .notes .summary {
@@ -121,4 +148,20 @@ h2 {
 
 .paper div {
     padding: 10px;
+}
+
+@media (max-width: 500px) {
+    .date .pdf, .date .bib {
+        font-size: 50%;
+        top: 6px;
+    }
+
+    .date .bib {
+        left: 5px;
+        right: auto;
+    }
+    .date .pdf {
+        right: 5px;
+        left: auto;
+    }
 }

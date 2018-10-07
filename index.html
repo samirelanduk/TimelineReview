@@ -8,7 +8,6 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab' rel='stylesheet' type='text/css'>
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="markdown.min.js"></script>
 </head>
 
 <body>
@@ -23,37 +22,6 @@
     </div>
 
 <script>
-
-function textToBlocks(text) {
-    lines = text.split("\n"); blocks = []; var block = []
-    for (var l = 0; l < lines.length; l++) {
-        if (lines[l].slice(0, 2) == "##" && block.length) {
-            blocks.push(block); block = [];
-        }
-        if (lines[l]) {
-            block.push(lines[l])
-        }
-    }
-    blocks.push(block);
-    return blocks;
-}
-
-function blocksToPapers(blocks) {
-    var papers = [];
-    for (var b = 0; b < blocks.length; b++) {
-        var date = new Date(blocks[b][0].slice(4, 14));
-        var title = blocks[b][0].slice(0, 3) + blocks[b][0].slice(15);
-        var summary = blocks[b][1];
-        var text = blocks[b].slice(2);
-        papers.push({
-            date: date,
-            title: markdown.toHTML(title),
-            summary: "<p class='summary'>" + summary + "</p>",
-            text: markdown.toHTML(text.join("\n\n")),
-        })
-    }
-    return papers;
-}
 
 function selectPaper(id) {
     $(".paper").each(function() {
@@ -88,13 +56,13 @@ function getSelectedPaperId() {
 var blocks; var papers;
 var PX_PER_DAY = 0.1;
 $.ajax({
-    url: "notes.md",
+    url: "papers.json",
     cache: false,
     contentType: "*/*",
-    success: function(text){
-        blocks = textToBlocks(text);
-        papers = blocksToPapers(blocks);
-
+    success: function(papers){
+        for (var p = 0; p < papers.length; p++) {
+            papers[p].date = new Date(papers[p].date)
+        }
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
         var end = new Date(new Date().getYear() + 1900, 11, 31);
         var totalDays = (end - start) / (1000 * 60 * 60 * 24)
@@ -126,8 +94,8 @@ $.ajax({
               + "px' data-hover='" + papers[p].title + "' data-id='" + p + "'></div>");
             notes.append("<div class='paper' data-id='" + p + "'>" +
             "<div class='date'>" + papers[p].date.toLocaleDateString("GB", {
-                year: 'numeric', month: 'long', day: 'numeric'
-            }) + "</div><div>" + papers[p].title + papers[p].summary + papers[p].text + "</div></div>")
+                year: 'numeric', month: 'short', day: 'numeric'
+            }) + "<div class='pdf " + papers[p].pdf + "'>PDF</div><div class='bib " + papers[p].bib + "'>BIB</div></div><div>" + papers[p].title + papers[p].summary + papers[p].notes + "</div></div>")
         }
 
 

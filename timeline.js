@@ -1,8 +1,10 @@
 function isTouchDevice() {
+    //This function might not always work...
     return "ontouchstart" in window || navigator.msMaxTouchPoints;
 }
 
 function selectPaper(id) {
+    // Selects a paper by its ID, scrolls to it, makes it appear, etc.
     $(".paper").each(function() {
         $(this).removeClass("visible");
         if ($(this).attr("data-id") == id) {
@@ -22,6 +24,7 @@ function selectPaper(id) {
 }
 
 function getSelectedPaperId() {
+    // Gets the ID of the currently selected paper, or '-1' if none is selected.
     var id = "-1";
     $(".paper").each(function() {
         if ($(this).hasClass("visible")) {
@@ -34,13 +37,17 @@ function getSelectedPaperId() {
 var PX_PER_DAY = 0.2;
 
 $.ajax({
+    //Get the generated JSON
     url: "papers.json",
     cache: false,
-    contentType: "*/*",
-    success: function(papers){
+    contentType: "application/json",
+    success: function(papers) {
+        // Make a JS date for every paper
         for (var p = 0; p < papers.length; p++) {
             papers[p].date = new Date(papers[p].datestring)
         }
+
+        // Work out the limits of the timeline
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
         var end = new Date(new Date().getYear() + 1900, 11, 31);
         var totalDays = (end - start) / (1000 * 60 * 60 * 24)
@@ -49,7 +56,6 @@ $.ajax({
         // Add timeline labels
         var timeline = $(".timeline");
         var year = start;
-
         while (year < end) {
             yearMid = new Date(year.getYear() + 1900, 7, 1);
             days = (year - start) / (1000 * 60 * 60 * 24)
@@ -63,7 +69,7 @@ $.ajax({
             year = new Date(year.getYear() + 1901, 0, 1);
         }
 
-
+        // Add timeline papers
         var notes = $(".notes");
         for (var p = 0; p < papers.length; p++) {
             var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
@@ -81,14 +87,12 @@ $.ajax({
             + papers[p].notes + "</div></div>")
         }
 
-
-
+        // Make each timeline dot clickable and hoverable.
         $(".timeline-dot").each(function() {
             var id = $(this).attr("data-id");
             $(this).click(function() {
                 selectPaper(id);
             })
-
             if (!isTouchDevice()) {
                 $(this).on("mouseenter", function(e) {
                     var box = $($(this)[0].nextElementSibling);
@@ -101,9 +105,9 @@ $.ajax({
                     $($(this)[0].nextElementSibling).removeClass("visible")
                 })
             }
-
         })
 
+        // If the links are internal, make them select a paper when clicked.
         $("a").each(function() {
             if ($(this).attr("href")[0] == "#") {
                 $(this).on("click", function(e) {
@@ -118,6 +122,7 @@ $.ajax({
             }
         })
 
+        // Let the user use up and down keys to navigate
         $(document).on("keydown", function(e) {
             if (e.which == 40) {
                 e.preventDefault();

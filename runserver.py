@@ -6,12 +6,14 @@ import http.server
 import socketserver
 
 def trim(s):
+    """Takes a title and strips it down to just alphanumeric characters."""
     chars = " :-).(}{"
     if s.endswith(".pdf"): s = s[:-4]
     if s.startswith("("): s = s[s.find(")"):]
     for char in chars: s = s.replace(char, "")
     return s.lower()
 
+# Open the relevant stuff on file
 pdfs = [f for f in os.listdir("Papers") if f.endswith(".pdf")]
 trimmed_pdfs = [trim(p) for p in pdfs]
 with open("refs.bib") as f:
@@ -20,6 +22,7 @@ refs = [trim(b["title"]) for b in bib.entries]
 with open("notes.md") as f:
     notes = f.read()
 
+# Process the notes
 lines = [l for l in notes.splitlines() if l.strip()]
 papers = []
 for line in lines:
@@ -28,6 +31,7 @@ for line in lines:
     else:
         papers[-1].append(line)
 
+# Creare the relevant JSON
 papers = [{
  "datestring": paper[0][4:14],
  "title": docupy.markdown_to_html(paper[0][:3] + paper[0][15:]),
@@ -39,8 +43,9 @@ papers = [{
 with open("papers.json", "w") as f:
     json.dump(papers, f)
 
+# Start a simple server
 PORT = 8080
 Handler = http.server.SimpleHTTPRequestHandler
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving at port", PORT)
+    print("Serving at port", PORT)
     httpd.serve_forever()

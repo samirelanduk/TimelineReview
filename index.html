@@ -66,6 +66,11 @@ function selectPaper(id) {
         $(this).removeClass("selected");
         if ($(this).attr("data-id") == id) {
             $(this).addClass("selected");
+            offset = $(this).css("top").slice(0, $(this).css("top").length - 2) - 20
+            console.log(offset)
+            $(".timeline-container").animate({
+                scrollTop: offset
+            }, 500)
         }
     });
 }

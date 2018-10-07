@@ -89,7 +89,9 @@ $.ajax({
             var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
             timeline.append("<div class='timeline-dot' style='top:"
             + (days * PX_PER_DAY)
-            + "px' data-hover='" + papers[p].title + "' data-id='" + p + "'></div>");
+            + "px' data-id='" + p + "'></div>");
+            timeline.append("<div class='timeline-box'>" + papers[p].title
+            + papers[p].summary + "</div>")
             notes.append("<div class='paper' data-id='" + p + "'>" +
             "<div class='date'>" + papers[p].date.toLocaleDateString("GB", {
                 year: 'numeric', month: 'short', day: 'numeric'
@@ -105,6 +107,17 @@ $.ajax({
             var id = $(this).attr("data-id");
             $(this).click(function() {
                 selectPaper(id);
+            })
+
+            $(this).on("mouseover", function(e) {
+                var box = $($(this)[0].nextElementSibling);
+                offset = $(this).position().top
+                offset = offset > 20 ? offset - 20 : offset
+                box.css("top", offset+ "px");
+                box.addClass("visible")
+            })
+            $(this).on("mouseleave", function(e) {
+                $($(this)[0].nextElementSibling).removeClass("visible")
             })
         })
 

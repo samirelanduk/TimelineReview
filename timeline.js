@@ -1,3 +1,7 @@
+function isTouchDevice() {
+    return "ontouchstart" in window || navigator.msMaxTouchPoints;
+}
+
 function selectPaper(id) {
     $(".paper").each(function() {
         $(this).removeClass("visible");
@@ -85,16 +89,19 @@ $.ajax({
                 selectPaper(id);
             })
 
-            $(this).on("mouseover", function(e) {
-                var box = $($(this)[0].nextElementSibling);
-                offset = $(this).position().top
-                offset = offset > 20 ? offset - 20 : offset
-                box.css("top", offset+ "px");
-                box.addClass("visible")
-            })
-            $(this).on("mouseleave", function(e) {
-                $($(this)[0].nextElementSibling).removeClass("visible")
-            })
+            if (!isTouchDevice()) {
+                $(this).on("mouseenter", function(e) {
+                    var box = $($(this)[0].nextElementSibling);
+                    offset = $(this).position().top
+                    offset = offset > 20 ? offset - 20 : offset
+                    box.css("top", offset+ "px");
+                    box.addClass("visible")
+                })
+                $(this).on("mouseleave click", function(e) {
+                    $($(this)[0].nextElementSibling).removeClass("visible")
+                })
+            }
+
         })
 
         $("a").each(function() {

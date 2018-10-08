@@ -122,11 +122,11 @@ h2 {
 }
 
 .date .pdf {
-    right: 10px;
+    left: 10px;
 }
 
 .date .bib {
-    left: 10px;
+    right: 10px;
 }
 
 .date .false {
@@ -161,6 +161,16 @@ h2 {
 
 .paper div {
     padding: 10px;
+}
+
+.paper-count {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    border: 1px solid #f1f1f1;
+    padding: 5px;
+    font-size: 80%;
+    cursor: pointer;
 }
 
 @media (max-width: 500px) {

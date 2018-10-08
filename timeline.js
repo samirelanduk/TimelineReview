@@ -49,6 +49,9 @@ $.ajax({
             papers[p].date = new Date(papers[p].datestring)
         }
 
+        // Update paper count
+        $(".paper-count")[0].innerHTML = papers.length + " Papers"
+
         // Work out the limits of the timeline
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
         var end = new Date(new Date().getYear() + 1900, 11, 31);

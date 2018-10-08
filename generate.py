@@ -2,8 +2,6 @@ import os
 import bibtexparser
 import docupy
 import json
-import http.server
-import socketserver
 
 def trim(s):
     """Takes a title and strips it down to just alphanumeric characters."""

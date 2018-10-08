@@ -43,15 +43,16 @@ h2 {
     background-color: rgb(74, 149, 134);
     display: inline-block;
     left: 45px;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: -5px;
+    border: 1px solid green;
 }
 
 .timeline-dot.selected {
     width: 12px;
     height: 12px;
-    border-radius: 6px;
+    border-radius: 7px;
     left: 44px;
     z-index: 10;
 }

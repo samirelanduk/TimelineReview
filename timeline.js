@@ -9,7 +9,7 @@ function selectPaper(id, papers) {
         $(this).removeClass("visible");
         if ($(this).attr("data-id") == id) {
             $(this).addClass("visible");
-            window.location.replace("#" + papers[parseInt(id)].datestring)
+            window.location = "#" + papers[parseInt(id)].datestring
         }
     })
     $(".timeline-dot").each(function() {
@@ -36,7 +36,7 @@ function getSelectedPaperId() {
     return id;
 }
 
-var PX_PER_DAY = 0.2;
+var PX_PER_DAY = 0.25;
 
 $.ajax({
     //Get the generated JSON

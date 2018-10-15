@@ -1,6 +1,7 @@
 html {
     height: 100%;
     font-family: Montserrat;
+    overflow: -moz-scrollbars-none;
 }
 
 body {
@@ -22,7 +23,6 @@ h2 {
     box-sizing: border-box;
     text-align: center;
     overflow-y: auto;
-    overflow-x: visible;
     position: relative;
     background: linear-gradient(90deg,
         rgba(0,0,0,0) calc(50% - 1px),
@@ -32,7 +32,6 @@ h2 {
 }
 
 .timeline {
-    background-color: #fafafa55;
 }
 
 .timeline-dot {
@@ -42,18 +41,18 @@ h2 {
     height: 10px;
     background-color: rgb(74, 149, 134);
     display: inline-block;
-    left: 45px;
+    left: 44px;
     border-radius: 6px;
     cursor: pointer;
     margin-top: -5px;
-    border: 1px solid green;
+    border: 1px solid gray;
 }
 
 .timeline-dot.selected {
     width: 12px;
     height: 12px;
     border-radius: 7px;
-    left: 44px;
+    left: 43px;
     z-index: 10;
 }
 
@@ -149,6 +148,8 @@ h2 {
 
 .notes p {
     font-size: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .paper {
@@ -171,6 +172,25 @@ h2 {
     padding: 5px;
     font-size: 80%;
     cursor: pointer;
+    background-color: rgba(74, 149, 134, 0.3);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.papers-summary {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    border: 1px solid #f1f1f1;
+    padding: 5px;
+    font-size: 80%;
+    display: none;
+    padding-bottom: 30px;
+    text-align: center;
+    z-index: -1;
+    background-color: rgba(74, 149, 134, 0.1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 @media (max-width: 500px) {
@@ -186,5 +206,10 @@ h2 {
     .date .pdf {
         right: 5px;
         left: auto;
+    }
+
+    .notes p {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }

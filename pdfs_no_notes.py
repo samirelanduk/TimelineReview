@@ -2,7 +2,7 @@ import os
 
 def trim(s):
     """Takes a title and strips it down to just alphanumeric characters."""
-    chars = " :-).(}{"
+    chars = " :-).(}{/\"'?"
     if s.endswith(".pdf"): s = s[:-4]
     if s.startswith("("): s = s[s.find(")"):]
     for char in chars: s = s.replace(char, "")

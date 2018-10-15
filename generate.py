@@ -5,10 +5,12 @@ import json
 
 def trim(s):
     """Takes a title and strips it down to just alphanumeric characters."""
-    chars = " :-).(}{"
+    chars = " :-).(}{/\"'?"
+    d_chars = {"\AA": "A"}
     if s.endswith(".pdf"): s = s[:-4]
     if s.startswith("("): s = s[s.find(")"):]
     for char in chars: s = s.replace(char, "")
+    for char in d_chars: s = s.replace(char, d_chars[char])
     return s.lower()
 
 # Open the relevant stuff on file

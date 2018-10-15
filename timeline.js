@@ -36,7 +36,7 @@ function getSelectedPaperId() {
     return id;
 }
 
-var PX_PER_DAY = 0.25;
+var PX_PER_DAY = 0.1;
 
 $.ajax({
     //Get the generated JSON
@@ -48,9 +48,6 @@ $.ajax({
         for (var p = 0; p < papers.length; p++) {
             papers[p].date = new Date(papers[p].datestring)
         }
-
-        // Update paper count
-        $(".paper-count")[0].innerHTML = papers.length + " Papers"
 
         // Work out the limits of the timeline
         var start = new Date(papers[0].date.getYear() + 1900, 0, 1);
@@ -76,6 +73,8 @@ $.ajax({
 
         // Add timeline papers
         var notes = $(".notes");
+        var pdfCount = 0;
+        var bibCount = 0;
         for (var p = 0; p < papers.length; p++) {
             var days = (papers[p].date - start) / (1000 * 60 * 60 * 24)
             timeline.append("<div class='timeline-dot' style='top:"
@@ -90,7 +89,14 @@ $.ajax({
             + "'>PDF</div><div class='bib " + papers[p].bib
             + "'>BIB</div></div><div>" + papers[p].title + papers[p].summary
             + papers[p].notes + "</div></div>")
+            if (papers[p].bib) {bibCount++}
+            if (papers[p].pdf) {pdfCount++}
         }
+
+        // Update paper count
+
+        $(".paper-count")[0].innerHTML = papers.length + " Papers"
+        $(".papers-summary")[0].innerHTML = "<p>" + pdfCount + " Papers with PDF</p><p>" + bibCount + " Papers with BIB</p>"
 
         // Make each timeline dot clickable and hoverable.
         $(".timeline-dot").each(function() {
@@ -123,7 +129,6 @@ $.ajax({
 
         // If the links are internal, make them select a paper when clicked.
         $("a").each(function() {
-
             if ($(this).attr("href")[0] == "#") {
                 $(this).on("click", function(e) {
                     e.preventDefault();
@@ -156,5 +161,10 @@ $.ajax({
                 }
             }
         });
+
+        // Make summary pop up when clicked
+        $(".paper-count").click(function() {
+            $(".papers-summary").slideToggle("fast")
+        })
     }
 });

@@ -1,5 +1,6 @@
 *.pdf
 .DS_Store
 *.md
+!README.md
 *.bib
 *.json

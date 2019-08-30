@@ -4,3 +4,10 @@
 !README.md
 *.bib
 *.json
+All
+Brief
+Detailed
+*.sqlite3
+__pycache__
+*.pyc
+secrets.py

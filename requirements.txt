@@ -1,0 +1,10 @@
+docupy
+libsass
+
+rcssmin --install-option="--without-c-extensions"
+rjsmin
+django==2.1.4
+django-compressor
+django-sass-processor
+django-htmlmin
+

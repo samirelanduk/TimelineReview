@@ -3,7 +3,7 @@ libsass
 
 rcssmin --install-option="--without-c-extensions"
 rjsmin
-django==2.1.4
+django==2.1.11
 django-compressor
 django-sass-processor
 django-htmlmin

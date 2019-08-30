@@ -1,0 +1,30 @@
+.paper {
+
+    margin-bottom: $gap-5;
+
+    h2 {
+        margin-bottom: $gap-2;
+        font-size: $font-size-3;
+    }
+
+    time, .authors, .pdf-link {
+        margin-bottom: $gap-1;
+        display: block;
+    }
+
+
+    .tags {
+        padding: $gap-1 0px;
+        text-align: center;
+
+
+        .tag {
+            display: inline-block;
+            background-color: hsl(351, 100%, 71%);
+            color: white;
+            padding: 2px 5px;
+            border-radius: $border-radius-1;
+            margin: $gap-1;
+        }
+    }
+}

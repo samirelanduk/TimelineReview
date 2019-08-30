@@ -1,3 +1,4 @@
+import docupy
 from django.db import models
 
 class Paper(models.Model):
@@ -29,6 +30,21 @@ class Paper(models.Model):
     @property
     def authors_list(self):
         return self.authors.replace(", ", ",").split(",")
+    
+
+    @property
+    def summary_html(self):
+        return docupy.markdown_to_html(self.summary)
+    
+
+    @property
+    def description_html(self):
+        return docupy.markdown_to_html(self.description)
+    
+
+    @property
+    def details_html(self):
+        return docupy.markdown_to_html(self.details)
 
 
 

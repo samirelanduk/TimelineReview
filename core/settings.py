@@ -18,6 +18,8 @@ MIDDLEWARE = [
  "django.middleware.common.CommonMiddleware",
 ]
 
+DATE_FORMAT = "F j, Y"
+
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.abspath(f"{BASE_DIR}/core/static")
 SASS_PROCESSOR_ROOT = os.path.abspath(os.path.join(BASE_DIR, "core", "static"))

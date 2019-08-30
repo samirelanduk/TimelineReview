@@ -12,6 +12,23 @@
   </head>
 
   <body>
+    <h1>Papers</h1>
+    {% for paper in papers%}
+    <div class="paper">
+        <h2>{{ paper.title }}</h2>
+        <time>{{ paper.date }}</time>
+        <div class="authors">{{ paper.authors_list|join:", " }}</div>
+        <div class="summary">{{ paper.summary_html|safe }}</div>
+        <div class="description">{{ paper.description_html|safe }}</div>
+        <div class="tags">
+            {% for tag in paper.tags.all %}
+            <div class="tag">{{ tag }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% endfor %}
+
     <script src="/static/js/main.js"></script>
   </body>
 </html>

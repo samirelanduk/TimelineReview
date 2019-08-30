@@ -10,6 +10,7 @@ ROOT_URLCONF = "core.urls"
 INSTALLED_APPS = [
  "django.contrib.contenttypes",
  "django.contrib.staticfiles",
+ "sass_processor",
  "core",
 ]
 
@@ -18,3 +19,14 @@ MIDDLEWARE = [
 ]
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.abspath(f"{BASE_DIR}/core/static")
+
+TEMPLATES = [{
+ "BACKEND": "django.template.backends.django.DjangoTemplates",
+ "APP_DIRS": True,
+ "OPTIONS": {
+  "context_processors": [
+   "django.template.context_processors.request",
+  ],
+ },
+}]

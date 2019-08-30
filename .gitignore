@@ -11,3 +11,4 @@ Detailed
 __pycache__
 *.pyc
 secrets.py
+*.css*

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Papers{% endblock %}
+{% block title %}{{ tag }}{% endblock %}
 
 {% block body %}
-<h1>Papers</h1>
+<h1>{{ tag.title }}</h1>
 {% for paper in papers%}
     {% include "paper.html" %}
 {% endfor %}

@@ -59,5 +59,5 @@ class Tag(models.Model):
         return self.name
 
     
-    name = models.CharField(max_length=64)
+    name = models.SlugField(max_length=64)
     papers = models.ManyToManyField(Paper, related_name="tags")

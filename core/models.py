@@ -13,13 +13,16 @@ class Paper(models.Model):
     
     def create_filename(self, filename):
         extension = "." + filename.split(".")[-1] if "." in filename else ""
-        name = instance.title.replace(" ", "_")
-        return f"{name.lower()}{extension}"
+        name = self.title.replace(" ", "_")
+        return f"{self.date}_{name.lower()}{extension}"
 
 
     title = models.CharField(max_length=512)
     date = models.DateField()
     authors = models.CharField(max_length=512)
+    summary = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    details = models.TextField(null=True, blank=True)
     pdf = models.FileField(null=True, blank=True, upload_to=create_filename)
 
 

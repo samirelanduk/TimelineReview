@@ -1,0 +1,10 @@
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $gap-5;
+
+    a {
+        margin: 0px $gap-4;
+        font-size: $font-size-3;
+    }
+}

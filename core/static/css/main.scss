@@ -3,6 +3,7 @@
 @import "core";
 @import "nav";
 @import "paper";
+@import "tags";
 
 @media (min-width: 400px) {
     @include core--400();

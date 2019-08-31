@@ -1,0 +1,13 @@
+.tags-list {
+    max-width: 300px;
+    margin: 0px auto;
+
+    .tag {
+        margin-bottom: $gap-3;
+
+        h2 {
+            font-size: $font-size-4;
+            margin-bottom: $gap-1;
+        }
+    }   
+}

@@ -7,9 +7,15 @@
         font-size: $font-size-3;
     }
 
-    time, .authors, .pdf-link {
+    time, .authors {
         margin-bottom: $gap-1;
         display: block;
+    }
+
+    .description {
+        p {
+            font-weight: 200;
+        }
     }
 
 
@@ -25,6 +31,56 @@
             padding: 2px 5px;
             border-radius: $border-radius-1;
             margin: $gap-1;
+        }
+    }
+}
+
+
+@mixin paper--400() {
+    .paper {
+        margin-bottom: $gap-6;
+
+        h2 {
+            margin-bottom: $gap-3;
+            font-size: $font-size-4;
+        }
+    } 
+}
+
+@mixin paper--500() {
+    .paper {
+        margin-bottom: $gap-7;
+    } 
+}
+
+@mixin paper--600() {
+    .paper {
+        h2 {
+            margin-bottom: $gap-4;
+            font-size: $font-size-5;
+        }
+
+        time, .authors {
+            font-size: $font-size-4;
+            margin-bottom: $gap-2;
+        }
+
+        .tags {
+            .tag {
+                padding: 4px 10px;
+            }
+        }
+    } 
+}
+
+@mixin paper--800() {
+    .paper {
+        max-width: 800px;
+        margin-left: auto; margin-right: auto;
+        margin-bottom: $gap-8;
+
+        h2 {
+            font-size: $font-size-6;
         }
     }
 }

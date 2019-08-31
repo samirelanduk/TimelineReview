@@ -8,3 +8,24 @@ nav {
         font-size: $font-size-3;
     }
 }
+
+@mixin nav--600() {
+    nav {
+        margin-bottom: $gap-6;
+
+        a {
+            font-size: $font-size-4;
+        }
+    }
+}
+
+
+@mixin nav--800() {
+    nav {
+        margin-bottom: $gap-7;
+        
+        a {
+            font-size: $font-size-5;
+        }
+    }
+}

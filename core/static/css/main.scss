@@ -3,3 +3,49 @@
 @import "core";
 @import "nav";
 @import "paper";
+
+@media (min-width: 400px) {
+    @include core--400();
+    @include paper--400();
+}
+
+@media (min-width: 500px) {
+    @include core--500();
+    @include paper--500();
+}
+
+@media (min-width: 600px) {
+    @include core--600();
+    @include nav--600();
+    @include paper--600();
+}
+
+@media (min-width: 700px) {
+   
+}
+
+@media (min-width: 800px) {
+    @include core--800();
+    @include nav--800();
+    @include paper--800();
+}
+
+@media (min-width: 900px) {
+    
+}
+
+@media (min-width: 1000px) {
+    
+}
+
+@media (min-width: 1100px) {
+    
+}
+
+@media (min-width: 1200px) {
+    
+}
+
+@media (min-width: 1500px) {
+    
+}

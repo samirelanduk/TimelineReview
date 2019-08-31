@@ -26,3 +26,67 @@ a {
 a, input[type=submit], button {
     cursor: pointer;
 }
+
+
+@mixin core--400() {
+    body {
+        padding: $gap-3 $gap-4;
+    }
+
+    h1 {
+        font-size: $font-size-8;
+        margin-bottom: $gap-5;
+    }
+
+    p {
+        margin-bottom: $gap-3;
+        line-height: 1.6;
+    }  
+}
+
+@mixin core--500() {
+    body {
+        padding: $gap-4 $gap-5;
+    }
+
+    h1 {
+        font-size: $font-size-8;
+        margin-bottom: $gap-5;
+    }
+
+    p {
+        line-height: 1.7;
+    }  
+}
+
+@mixin core--600() {
+    body {
+        padding: $gap-5 $gap-6;
+        font-size: $font-size-3;
+    }
+
+    h1 {
+        font-size: $font-size-9;
+        margin-bottom: $gap-6;
+    }
+
+    p {
+        line-height: 1.9;
+    }  
+}
+
+@mixin core--800() {
+    body {
+        padding: $gap-6 $gap-7;
+        font-size: $font-size-4;
+    }
+
+    h1 {
+        font-size: $font-size-10;
+        margin-bottom: $gap-7;
+    }
+
+    p {
+        line-height: 2;
+    }  
+}

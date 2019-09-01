@@ -27,6 +27,27 @@ a, input[type=submit], button {
     cursor: pointer;
 }
 
+input, textarea {
+    display: block;
+    border: 1px solid $gray-3;
+    line-height: 2;
+    padding: $gap-1 $gap-2;
+    width: 100%;
+    color: $gray-7;
+    background-color: white;
+    border-radius: $border-radius-1;
+    margin-bottom: $gap-4;
+}
+
+textarea {
+    height: 200px;
+}
+
+input[type=submit] {
+    width: fit-content;
+    cursor: pointer;
+}
+
 
 @mixin core--400() {
     body {

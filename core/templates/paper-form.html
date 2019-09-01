@@ -1,0 +1,47 @@
+<form method="POST" class="paper-form">
+    {% if form.errors.title %}
+    <div class="error" id="title-error">{{ form.errors.title.0 }}</div>
+    {% endif %}
+    {{ form.title.label_tag }}
+    {{ form.title }}
+
+    {% if form.errors.date %}
+    <div class="error" id="date-error">{{ form.errors.date.0 }}</div>
+    {% endif %}
+    {{ form.date.label_tag }}
+    {{ form.date }}
+
+    {% if form.errors.authors %}
+    <div class="error" id="authors-error">{{ form.errors.authors.0 }}</div>
+    {% endif %}
+    {{ form.authors.label_tag }}
+    {{ form.authors }}
+
+    {% if form.errors.summary %}
+    <div class="error" id="summary-error">{{ form.errors.summary.0 }}</div>
+    {% endif %}
+    {{ form.summary.label_tag }}
+    {{ form.summary }}
+
+    {% if form.errors.description %}
+    <div class="error" id="description-error">{{ form.errors.description.0 }}</div>
+    {% endif %}
+    {{ form.description.label_tag }}
+    {{ form.description }}
+
+    {% if form.errors.details %}
+    <div class="error" id="details-error">{{ form.errors.details.0 }}</div>
+    {% endif %}
+    {{ form.details.label_tag }}
+    {{ form.details }}
+
+    {% if form.errors.pdf %}
+    <div class="error" id="pdf-error">{{ form.errors.pdf.0 }}</div>
+    {% endif %}
+    {{ form.pdf.label_tag }}
+    {{ form.pdf }}
+
+
+    {% csrf_token %}
+    <input type="submit" value="Save">
+</form>

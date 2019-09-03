@@ -1,4 +1,4 @@
-<form method="POST" class="paper-form">
+<form method="POST" class="paper-form" enctype="multipart/form-data">
     {% if form.errors.title %}
     <div class="error" id="title-error">{{ form.errors.title.0 }}</div>
     {% endif %}

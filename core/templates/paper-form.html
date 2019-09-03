@@ -41,6 +41,12 @@
     {{ form.pdf.label_tag }}
     {{ form.pdf }}
 
+    {% if form.errors.tags %}
+    <div class="error" id="tags-error">{{ form.errors.tags.0 }}</div>
+    {% endif %}
+    {{ form.tags.label_tag }}
+    {{ form.tags }}
+
 
     {% csrf_token %}
     <input type="submit" value="Save">

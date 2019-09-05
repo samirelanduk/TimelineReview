@@ -7,5 +7,6 @@ urlpatterns = [
  path("tags/<slug:tag>/", tag),
  path("tags/", tags),
  path("new/", new_paper),
+ path("paper/<int:id>/edit/", edit_paper),
  path("", home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

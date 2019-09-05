@@ -35,6 +35,12 @@
     {{ form.details.label_tag }}
     {{ form.details }}
 
+    {% if form.errors.bibtex %}
+    <div class="error" id="bibtex-error">{{ form.errors.bibtex.0 }}</div>
+    {% endif %}
+    {{ form.bibtex.label_tag }}
+    {{ form.bibtex }}
+
     {% if form.errors.pdf %}
     <div class="error" id="pdf-error">{{ form.errors.pdf.0 }}</div>
     {% endif %}

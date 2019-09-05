@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from .models import Paper, Tag
 from .forms import PaperForm
 
@@ -36,3 +37,15 @@ def tag(request, tag):
      "tag": tag,
      "papers": Paper.objects.filter(tags__name=tag)
     })
+
+
+def bibtex_download(request):
+
+    filebody = "\n\n".join([p.bibtex for p in Paper.objects.all() if p.bibtex])
+    response = HttpResponse(
+     filebody, content_type="application/plain-text"
+    )
+    response["Content-Disposition"] = 'attachment; filename="{}"'.format(
+     "bibliograpy.bib"
+    )
+    return response

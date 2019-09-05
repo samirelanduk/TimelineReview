@@ -43,6 +43,11 @@ textarea {
     height: 200px;
 }
 
+textarea#id_bibtex {
+    line-height: 1;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 input[type=submit] {
     width: fit-content;
     cursor: pointer;

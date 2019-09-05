@@ -1,7 +1,12 @@
 <div class="paper" id="#paper{{ paper.id }}">
     <a href="/paper/{{ paper.id }}/edit/">Edit</a>
     <h2>{{ paper.title }}</h2>
-    <time>{{ paper.date }} | {% if paper.pdf %}<a class="pdf-link" href="{{ paper.pdf.url }}" target="_blank">PDF</a>{% endif %}</time>
+    <time>
+        {{ paper.date }}
+        {% if paper.pdf %}| <a class="pdf-link" href="{{ paper.pdf.url }}" target="_blank">PDF</a>{% endif %}
+        {% if paper.pdf and paper.bibtex %}|{% endif %}
+        {% if paper.bibtex %}<span class="bibtex">BIB</span>{% endif %}
+    </time>
     <div class="authors">{{ paper.authors_list|join:", " }}</div>
     <div class="summary">{{ paper.summary_html|safe }}</div>
     <div class="description">{{ paper.description_html|safe }}</div>

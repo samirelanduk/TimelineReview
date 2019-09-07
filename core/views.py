@@ -32,6 +32,13 @@ def edit_paper(request, id):
     return render(request, "edit-paper.html", {"form": form})
 
 
+def delete_paper(request, id):
+    if request.method == "POST":
+        paper = get_object_or_404(Paper, id=id)
+        paper.delete()
+    return redirect("/")
+
+
 def tag(request, tag):
     return render(request, "tag.html", {
      "tag": tag,

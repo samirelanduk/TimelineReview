@@ -5,4 +5,15 @@
 {% block body %}
 <h1>Edit Paper</h1>
 {% include "paper-form.html" %}
+
+<div class="delete">
+    <button class="delete-button">Delete</button>
+    <div class="delete-section">
+        <p>Are you sure?</p>
+        <form method="POST" action="/paper/{{ form.instance.id }}/delete/">
+            {% csrf_token %} <input type="submit" value="Yes"> 
+        </form>
+        <button class="changed-mind">No</button>
+    </div>
+</div>
 {% endblock %}

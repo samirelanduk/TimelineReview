@@ -30,3 +30,18 @@ document.onkeydown = function(event) {
 
     }
 };
+
+var button = document.getElementsByClassName("delete-button");
+if (button.length) {
+    button = button[0];
+    button.onclick = function() {
+        var deleteSection = document.getElementsByClassName("delete-section")[0];
+        deleteSection.style.display = "block";
+    }
+
+    var changedMind = document.getElementsByClassName("changed-mind")[0];
+    changedMind.onclick = function() {
+        var deleteSection = document.getElementsByClassName("delete-section")[0];
+        deleteSection.style.display = null;
+    }
+}

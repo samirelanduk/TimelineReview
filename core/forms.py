@@ -19,7 +19,8 @@ class PaperForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
         model = forms.ModelForm.save(self, *args, **kwargs)
-        tags = [t.strip() for t in self.cleaned_data["tags"].split(",")]
+        tags = [t.strip() for t in self.cleaned_data["tags"].split(",") if t.strip()]
+        print(tags)
         for tag in tags:
             try:
                 tag_object = Tag.objects.get(name=tag)

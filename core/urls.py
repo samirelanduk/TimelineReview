@@ -8,6 +8,7 @@ urlpatterns = [
  path("tags/", tags),
  path("new/", new_paper),
  path("paper/<int:id>/edit/", edit_paper),
+ path("paper/<int:id>/delete/", delete_paper),
  path("bibtex/", bibtex_download),
  path("", home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -31,7 +31,21 @@ document.onkeydown = function(event) {
     }
 };
 
-var button = document.getElementsByClassName("delete-button");
+var button = document.getElementsByClassName("reorder-button");
+if (button.length) {
+    button = button[0];
+    button.onclick = function() {
+        var papers = document.getElementsByClassName("papers")[0];
+        if (papers.classList.contains("reversed")) {
+            papers.classList.remove("reversed");
+        } else {
+            papers.classList.add("reversed");
+        }
+
+    }
+}
+
+button = document.getElementsByClassName("delete-button");
 if (button.length) {
     button = button[0];
     button.onclick = function() {

@@ -27,7 +27,7 @@ a, input[type=submit], button {
     cursor: pointer;
 }
 
-input, textarea {
+input, textarea, button {
     display: block;
     border: 1px solid $gray-3;
     line-height: 2;
@@ -48,7 +48,7 @@ textarea#id_bibtex {
     font-family: 'Courier New', Courier, monospace;
 }
 
-input[type=submit] {
+input[type=submit], button {
     width: fit-content;
     cursor: pointer;
 }

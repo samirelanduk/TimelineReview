@@ -8,7 +8,6 @@
     <div class="paper-count"> {{ papers.count }} papers</div>
     <a href="/new/">New</a>
 </div>
-{% for paper in papers%}
-    {% include "paper.html" %}
-{% endfor %}
+
+{% include "papers.html" %}
 {% endblock %}

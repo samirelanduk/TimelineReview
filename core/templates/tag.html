@@ -4,7 +4,5 @@
 
 {% block body %}
 <h1>{{ tag.title }}</h1>
-{% for paper in papers%}
-    {% include "paper.html" %}
-{% endfor %}
+{% include "papers.html" %}
 {% endblock %}

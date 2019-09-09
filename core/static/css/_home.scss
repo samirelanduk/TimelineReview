@@ -1,0 +1,9 @@
+.home-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $gap-6;
+
+    .paper-count, a {
+        margin: 0px $gap-3;
+    }
+}

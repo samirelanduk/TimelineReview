@@ -25,7 +25,7 @@ class Paper(models.Model):
     description = models.TextField(null=True, blank=True)
     details = models.TextField(null=True, blank=True)
     bibtex = models.TextField()
-    pdf = models.FileField(null=True, blank=True, upload_to=create_filename)
+    pdf = models.FileField(null=True, blank=True, upload_to=create_filename, max_length=500)
 
 
     @property

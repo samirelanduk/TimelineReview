@@ -6,6 +6,7 @@
         {% if paper.pdf %}| <a class="pdf-link" href="{{ paper.pdf.url }}" target="_blank">PDF</a>{% endif %}
         | <span class="bibtex">BIB</span>
     </time>
+    <div class="full-bib hidden">{{ paper.bibtex }}</div>
     <div class="authors">{{ paper.authors_list|join:", " }}</div>
     <div class="summary">{{ paper.summary_html|safe }}</div>
     <div class="description">{{ paper.description_html|safe }}</div>

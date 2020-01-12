@@ -59,3 +59,11 @@ if (button.length) {
         deleteSection.style.display = null;
     }
 }
+
+bibs = document.getElementsByClassName("bibtex");
+for (var bib of bibs) {
+    bib.addEventListener("click", (e) => {
+        let bib = e.target.parentNode.parentNode.getElementsByClassName("full-bib")[0];
+        bib.classList.toggle("hidden");
+    })
+}

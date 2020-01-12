@@ -14,6 +14,17 @@
 
     .bibtex {
         color: seagreen;
+        cursor: pointer;
+    }
+
+    .full-bib {
+        font-family: monospace;
+        white-space: pre;
+        margin: $gap-4 0;
+    }
+
+    .full-bib.hidden {
+        display: none;
     }
 
     .description {

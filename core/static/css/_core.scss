@@ -41,10 +41,10 @@ input, textarea, button {
 
 textarea {
     height: 200px;
+    line-height: 1.2;
 }
 
 textarea#id_bibtex {
-    line-height: 1;
     font-family: 'Courier New', Courier, monospace;
 }
 

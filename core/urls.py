@@ -7,6 +7,7 @@ urlpatterns = [
  path("tags/<slug:tag>/", tag),
  path("tags/", tags),
  path("new/", new_paper),
+ path("paper/<int:id>/", paper),
  path("paper/<int:id>/edit/", edit_paper),
  path("paper/<int:id>/delete/", delete_paper),
  path("bibtex/", bibtex_download),

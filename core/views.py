@@ -11,13 +11,18 @@ def tags(request):
     return render(request, "tags.html", {"tags": Tag.objects.all()})
 
 
+def paper(request, id):
+    paper = get_object_or_404(Paper, id=id)
+    return render(request, "paper-detail.html", {"paper": paper})
+
+
 def new_paper(request):
     form = PaperForm()
     if request.method == "POST":
         form = PaperForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect(f"/paper/{form.instance.id}/")
     return render(request, "new-paper.html", {"form": form})
 
 
@@ -28,7 +33,7 @@ def edit_paper(request, id):
         form = PaperForm(request.POST, request.FILES, instance=paper)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect(f"/paper/{form.instance.id}/")
     return render(request, "edit-paper.html", {"form": form})
 
 

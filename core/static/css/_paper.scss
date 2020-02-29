@@ -17,6 +17,14 @@
         cursor: pointer;
     }
 
+    .details-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #78e08f;
+        display: inline-block;
+        border-radius: 100%;
+    }
+
     .full-bib {
         font-family: monospace;
         white-space: pre;
